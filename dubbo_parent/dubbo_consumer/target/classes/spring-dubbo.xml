@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    
+    <!--dubbo的基本配置-->
+    <dubbo:application name="dubbo-consumer"/>
+
+    <!--配置zookeeper的IP地址和端口-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!--订阅远程服务对象,id的名称和Controller类中的UserService接口名称要一致-->
+    <!--<dubbo:reference id="userService" interface="com.wzw.service.UserService"/>-->
+
+    <!--dubbo注解扫描-->
+    <dubbo:annotation package="com.wzw.controller" />
+
+    <!--启动时检查:
+            false:不检查提供者
+            true:检查提供者
+            -->                  <!--超时时间为5秒钟-->
+    <dubbo:consumer check="false" timeout="5000"/>
+
+
+</beans>

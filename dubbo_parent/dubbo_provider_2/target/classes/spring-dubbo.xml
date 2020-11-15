@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--dubbo应用的名称:唯一标识-->
+    <dubbo:application name="dubbo-provider"/>
+    
+    <!--服务注册中心的地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!--&lt;!&ndash;指定暴露的服务接口及实例&ndash;&gt;-->
+    <!--<dubbo:service interface="com.wzw.service.UserService" ref="userService"/>-->
+
+    <!--&lt;!&ndash;配置业务类实例(实现类)&ndash;&gt;-->
+    <!--<bean id="userService" class="com.wzw.service.impl.UserServiceImpl"/>-->
+
+    <!--包扫描:注解方式实现-->
+    <dubbo:annotation package="com.wzw.service"/>
+    <!-- 多协议配置:name=协议  post=端口 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+    <!--<dubbo:protocol name="rmi" port="1100" />-->
+
+    <!--============================配置文件方式开多协议配置===========================================-->
+    <!--&lt;!&ndash; 多协议配置:name=协议  post=端口 &ndash;&gt;-->
+    <!--<dubbo:protocol name="dubbo" port="20881" />-->
+    <!--<dubbo:protocol name="rmi" port="1099" />-->
+    <!--&lt;!&ndash; 使用dubbo协议暴露服务 &ndash;&gt;-->
+    <!--<dubbo:service interface="com.wzw.service.HelloService" ref="helloService" protocol="dubbo" />-->
+    <!--&lt;!&ndash; 使用rmi协议暴露服务 &ndash;&gt;-->
+    <!--<dubbo:service interface="com.wzw.service.DemoService" ref="demoService" protocol="rmi" />-->
+    <!--&lt;!&ndash; 使用dubbo和rmi协议暴露服务 &ndash;&gt;-->
+    <!--<dubbo:service interface="com.wzw.service.UserService" ref="userService"/>-->
+
+    <!--<bean id="helloService" class="com.wzw.service.impl.HelloServiceImpl" />-->
+    <!--<bean id="demoService" class="com.wzw.service.impl.DemoServiceImpl" />-->
+    <!--<bean id="userService" class="com.wzw.service.impl.UserServiceImpl" />-->
+    <!--=========================================结束==============================================-->
+</beans>
